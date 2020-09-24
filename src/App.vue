@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <user/>
+      <create-tweet/>
+      <filter-tweets/>
+      <tweet-list/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { configureLiveApi } from 'dm-fetch'
+
+import User from './components/User.vue'
+import CreateTweet from './components/CreateTweet.vue'
+import FilterTweets from './components/Filter.vue'
+import TweetList from './components/TweetList.vue'
+
+configureLiveApi("https://dm-backend.herokuapp.com/api/dm/2", "72593227-c460-43e9-9adf-b50fc34a6382", false)
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    User,
+    CreateTweet,
+    TweetList,
+    FilterTweets
+  },
+  created(){
+    this.$store.dispatch('getTweets')
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+#app{
+  display: flex;
+  justify-content: center;
+}
+.container{
+  max-width: 450px;
 }
 </style>
