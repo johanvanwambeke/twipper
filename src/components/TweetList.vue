@@ -17,7 +17,7 @@ export default {
   name: 'tweet-list',
   components:{Tweet},
   computed: {
-    ...mapGetters(['count','tweets','loading']),
+    ...mapGetters(['tweets','loading']),
   },
   
 }

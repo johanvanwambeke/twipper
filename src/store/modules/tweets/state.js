@@ -1,5 +1,5 @@
 export const state = {
-  count:5,
   tweets:null,
-  loading:true
+  loading:true,
+  filterState:'all'
 };
